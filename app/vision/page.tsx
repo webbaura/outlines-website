@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata: Metadata = {
@@ -42,14 +43,15 @@ export default function VisionPage() {
             </p>
           </ScrollReveal>
 
-          {/* ── Ring motif ─────────────────────────────────────────── */}
+          {/* ── Logo ───────────────────────────────────────────────── */}
           <ScrollReveal className="flex justify-center pt-8">
-            <div className="relative w-32 h-32">
-              <div className="absolute inset-0 rounded-full border border-white/10" />
-              <div className="absolute inset-3 rounded-full border border-white/8" />
-              <div className="absolute inset-6 rounded-full border border-white/6" />
-              <div className="absolute inset-9 rounded-full border border-white/4" />
-            </div>
+            <Image
+              src="/assets/brand/logo-dark.jpg"
+              alt="Outlines"
+              width={120}
+              height={120}
+              className="w-24 h-24 sm:w-32 sm:h-32 opacity-80"
+            />
           </ScrollReveal>
         </div>
       </section>
