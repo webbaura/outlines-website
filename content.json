@@ -1,0 +1,67 @@
+{
+  "business": {
+    "name": "Webbaura",
+    "tagline": "Design With Virtue. Build With Discipline.",
+    "description": "We build fast, ethical, high-converting websites for businesses that give a damn."
+  },
+  "philosophy": "Modern business is noisy. Attention is extracted. Interfaces are engineered to manipulate. Growth is often pursued without responsibility. A different path is possible. Ethical and effective design isn't soft. It's disciplined. It's strategic. It's long-term.",
+  "pages": {
+    "home": {
+      "hero": {
+        "headline": "Design With Virtue. Build With Discipline.",
+        "subheadline": "We build fast, ethical, high-converting websites for businesses that give a damn.",
+        "cta": "Get Your Website Built"
+      },
+      "sections": [
+        {
+          "type": "philosophy",
+          "title": "A Different Path",
+          "body": "Modern business is noisy. Attention is extracted. Interfaces are engineered to manipulate. We believe ethical and effective design isn't soft — it's disciplined, strategic, and long-term."
+        },
+        {
+          "type": "services_preview",
+          "title": "What We Build",
+          "items": ["Lead Generation Sites", "Portfolio & Branding", "E-commerce", "Custom Web Apps"]
+        },
+        {
+          "type": "cta",
+          "title": "Ready to Build Something Worth Having?",
+          "cta": "Start Your Project"
+        }
+      ]
+    },
+    "about": {
+      "title": "About Webbaura",
+      "headline": "Built on Principle. Driven by Results.",
+      "content": "Webbaura is a freelance web development studio founded on the belief that great design and ethical practice aren't in conflict — they're inseparable. We work with businesses that value integrity, long-term thinking, and genuine impact.",
+      "values": [
+        { "title": "Virtue", "body": "We design with honesty. No dark patterns. No manipulation. Just clear, purposeful interfaces that serve your users." },
+        { "title": "Discipline", "body": "We build with precision and intention. Every line of code, every design decision is deliberate." },
+        { "title": "Results", "body": "Ethical design converts. We've seen it. We'll prove it." }
+      ]
+    },
+    "services": {
+      "headline": "What We Do",
+      "subheadline": "End-to-end web development, built to perform.",
+      "items": [
+        { "title": "Lead Generation Sites", "description": "High-converting websites designed to turn visitors into clients. Built fast, built to last.", "price": "From $1,499" },
+        { "title": "Brand & Web Packages", "description": "Full brand identity plus a website that embodies it. Colour, typography, voice, and code — all aligned.", "price": "From $4,999" },
+        { "title": "Portfolio Sites", "description": "Showcase your work with a site that's as good as the work itself.", "price": "From $999" },
+        { "title": "Ongoing Retainer", "description": "Monthly updates, new pages, performance monitoring. We stay in your corner.", "price": "From $299/mo" }
+      ]
+    },
+    "portfolio": {
+      "headline": "Our Work",
+      "subheadline": "A selection of sites built with purpose.",
+      "items": [
+        { "title": "Coming Soon", "description": "Our portfolio is growing. Check back soon.", "url": "#" }
+      ]
+    },
+    "contact": {
+      "headline": "Let's Build Something.",
+      "subheadline": "Tell us about your project and we'll get back to you within 24 hours.",
+      "email": "support@eventimeetup.com",
+      "cta": "Start a Project"
+    }
+  }
+}

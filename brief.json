@@ -1,0 +1,46 @@
+{
+  "business": {
+    "name": "Outlines",
+    "industry": "hospitality",
+    "location": "Melbourne, Australia",
+    "website": null,
+    "phone": null,
+    "existing_score": null,
+    "existing_issues": ["No website yet"],
+    "existing_strengths": ["Strong visual identity", "Clear mission", "Distinct cultural niche"]
+  },
+  "existing_site": { "url": null, "content": "" },
+  "brief_context": {
+    "tone": "chill, lighthearted, culturally aware — not corporate, not try-hard",
+    "services": ["Music events", "House music culture", "Event sign-ups"],
+    "target_audience": "Melbourne house music community, electronic music lovers, 18–35"
+  },
+  "_intel": {
+    "business": {
+      "name": "Outlines",
+      "industry": "hospitality",
+      "location": "Melbourne, Australia",
+      "existing_issues": ["No website"],
+      "existing_strengths": ["Strong logo mark", "Clear cultural mission", "House music niche"]
+    },
+    "brief_context": {
+      "tone": "chill, lighthearted — good house music culture, Melbourne underground scene",
+      "mood": "dark, monochrome, cinematic — pure black and white, no colour. Reference: Untitled Group aesthetic."
+    }
+  },
+  "_brand": {
+    "extracted": false,
+    "fonts": ["Space Grotesk", "Space Mono"],
+    "darkTheme": true,
+    "bgColour": "#000000",
+    "brandColours": ["#000000", "#ffffff"],
+    "logoUrl": null,
+    "social": {},
+    "booking": null,
+    "downloaded": {
+      "logo": "/assets/brand/logo-dark.jpg",
+      "logoLight": "/assets/brand/logo-light.jpg",
+      "images": []
+    }
+  }
+}

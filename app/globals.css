@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* ── Outlines — Pure Monochrome Theme ──────────────────────────────── */
+@theme {
+  --color-black:   #000000;
+  --color-white:   #ffffff;
+  --font-family-heading: var(--font-montserrat, system-ui);
+  --font-family-mono:    var(--font-montserrat, monospace);
+}
+
+:root {
+  --color-black:  #000000;
+  --color-white:  #ffffff;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ── Scroll animations ───────────────────────────────────────────── */
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.animate-fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.animate-fade-in.in-view {
+  opacity: 1;
+}
+
+/* Stagger children */
+.stagger > *:nth-child(1) { transition-delay: 0ms; }
+.stagger > *:nth-child(2) { transition-delay: 100ms; }
+.stagger > *:nth-child(3) { transition-delay: 200ms; }
+.stagger > *:nth-child(4) { transition-delay: 300ms; }
+.stagger > *:nth-child(5) { transition-delay: 400ms; }
+
+/* ── Ring motif — decorative concentric circles ──────────────────── */
+.ring-motif {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+}
+
+/* ── Focus styles (accessibility) ────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 3px; }
+
+/* ── Selection ───────────────────────────────────────────────────── */
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
