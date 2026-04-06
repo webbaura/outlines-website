@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     title: 'Outlines',
     description: 'Outlining electronic music culture.',
   },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   robots: {
     index: true,
     follow: true,
