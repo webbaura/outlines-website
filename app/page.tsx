@@ -1,14 +1,16 @@
 import Image from 'next/image';
-import { ChevronDown, MapPin, Calendar } from 'lucide-react';
+import Link from 'next/link';
+import { ChevronDown, MapPin } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import EmailSignup from '@/components/EmailSignup';
 
-const placeholderEvents = [
+const upcomingEvents = [
   {
-    date: { day: '19', month: 'APR' },
-    name: 'Outlines X Gambino Launch',
+    date: { day: '07', month: 'JUN' },
+    name: 'Outlines x Gambino King’s Birthday Eve',
     location: 'Gambino Rooftop, Glen Waverley',
-    description: 'Our first chapter. A rooftop session shaped by house music, warm energy, and a sharper sense of atmosphere.',
+    description:
+      'Sunday night, rooftop energy, and no Monday alarm. Outlines returns to Gambino for King’s Birthday Eve.',
   },
 ];
 
@@ -77,7 +79,7 @@ export default function Home() {
           </p>
 
           <div className="space-y-0">
-            {placeholderEvents.map((event, i) => (
+            {upcomingEvents.map((event, i) => (
               <div
                 key={i}
                 className="border-t border-white/10 py-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8"
@@ -107,6 +109,15 @@ export default function Home() {
               </div>
             ))}
             <div className="border-t border-white/10" />
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/events"
+              className="text-sm font-[family-name:var(--font-montserrat)] text-white/60 hover:text-white uppercase tracking-[0.15em] underline underline-offset-4 transition-colors"
+            >
+              View all events
+            </Link>
           </div>
         </ScrollReveal>
       </section>
