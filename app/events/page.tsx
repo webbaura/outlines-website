@@ -145,7 +145,7 @@ export default async function EventsPage() {
       </section>
 
       <section className="pb-16 sm:pb-24 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {hasUpcoming ? (
             <div className="space-y-0">
               {upcomingEvents.map((event) => (
@@ -174,7 +174,7 @@ export default async function EventsPage() {
 
       {hasPast && (
         <section className="pb-24 sm:pb-32 px-6">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <p className="text-sm font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em] mb-8">
               Past events
             </p>

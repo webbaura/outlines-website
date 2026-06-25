@@ -24,21 +24,21 @@ export default function VisionPage() {
 
       {/* ── Body ─────────────────────────────────────────────────── */}
       <section className="pb-28 sm:pb-36 px-6">
-        <div className="max-w-2xl mx-auto space-y-20">
+        <div className="max-w-5xl mx-auto space-y-20">
           <ScrollReveal>
-            <p className="text-white/60 text-lg sm:text-xl leading-relaxed">
+            <p className="text-white/60 text-lg sm:text-xl leading-relaxed max-w-2xl">
               Outlines came from a genuine love of electronic music and the kind of nights that stay with you long after they end. After years of being around music, events and spaces that felt like they were missing something, the idea was simple: create the kind of experience we would actually want to be at.
             </p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="text-white/60 text-lg sm:text-xl leading-relaxed">
+            <p className="text-white/60 text-lg sm:text-xl leading-relaxed max-w-2xl">
               For us, it starts with taste. Good music, the right setting and people who are there for the right reasons. Not overcomplicated, not overbranded, and not built around noise for the sake of it.
             </p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="text-white/60 text-lg sm:text-xl leading-relaxed">
+            <p className="text-white/60 text-lg sm:text-xl leading-relaxed max-w-2xl">
               Outlines is our way of bringing that taste into the real world and building something with long-term meaning around it.
             </p>
           </ScrollReveal>
