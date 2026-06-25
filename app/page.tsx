@@ -21,9 +21,6 @@ export default async function Home() {
       {/* ── Mission ──────────────────────────────────────────────── */}
       <section className="py-28 sm:py-36 px-6">
         <ScrollReveal className="max-w-2xl mx-auto text-center">
-          <p className="text-sm font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em] mb-4">
-            Outlining electronic music culture
-          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight mb-8">
             About
           </h2>

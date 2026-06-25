@@ -6,12 +6,12 @@ import DJApplicationForm from '@/components/forms/DJApplicationForm';
 export const metadata: Metadata = {
   title: 'DJ with Outlines',
   description:
-    'Outlines is looking for DJs who want to play sharp electronic music in the right rooms. Register your interest.',
+    'Outlines is looking for DJs who want to play good electronic music in the right rooms. Register your interest.',
   alternates: { canonical: '/djs' },
   openGraph: {
     title: 'DJ with Outlines',
     description:
-      'Outlines is looking for DJs who want to play sharp electronic music in the right rooms. Register your interest.',
+      'Outlines is looking for DJs who want to play good electronic music in the right rooms. Register your interest.',
     url: '/djs',
     type: 'website',
   },
@@ -27,7 +27,7 @@ export default function DJsPage() {
             Proper Sound
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight">
-            Sharp electronic music. The right rooms.
+            Proper Sound. Right Room.
           </h1>
         </div>
       </section>
@@ -36,7 +36,7 @@ export default function DJsPage() {
       <section className="pb-16 sm:pb-24 px-6">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-white/60 text-lg leading-relaxed">
-            Outlines is looking for DJs who want to play sharp electronic music in the right rooms.
+            Outlines is looking for DJs who want to play good electronic music in the right rooms.
           </p>
           <p className="text-white/60 text-lg leading-relaxed">
             We work with DJs who are not just looking for a set, but are willing to support the event, bring energy, promote properly, and treat Outlines like something they are helping build.
@@ -46,7 +46,7 @@ export default function DJsPage() {
 
       {/* ── Marquee divider ──────────────────────────────────────── */}
       <Marquee
-        items={['Sharp sound', 'Real support', 'Built together']}
+        items={['Proper sound', 'Real support', 'Built together']}
         bordered
         speed={80}
       />
