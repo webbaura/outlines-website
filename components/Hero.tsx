@@ -33,24 +33,21 @@ export default function Hero() {
         <div className="hero-line hero-line-3 flex flex-col sm:flex-row items-center gap-3">
           <Link
             href="/events"
-            className="group inline-flex items-center gap-3 bg-black text-white pl-6 pr-5 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
             Events
-            <span aria-hidden="true" className="block h-px w-4 bg-white/70 transition-all duration-300 ease-out group-hover:w-9 group-hover:bg-black/80" />
           </Link>
           <Link
             href="/house-parties"
-            className="group inline-flex items-center gap-3 bg-black text-white pl-6 pr-5 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
             House Parties
-            <span aria-hidden="true" className="block h-px w-4 bg-white/70 transition-all duration-300 ease-out group-hover:w-9 group-hover:bg-black/80" />
           </Link>
           <Link
             href="/djs"
-            className="group inline-flex items-center gap-3 bg-black text-white pl-6 pr-5 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
             DJ with us
-            <span aria-hidden="true" className="block h-px w-4 bg-white/70 transition-all duration-300 ease-out group-hover:w-9 group-hover:bg-black/80" />
           </Link>
         </div>
       </div>
