@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { loadRecaptcha, executeRecaptcha } from '@/lib/recaptcha-client';
+import { isCaptchaEnabled } from '@/lib/captcha-flag';
 import RecaptchaNotice from './forms/RecaptchaNotice';
 
 interface Props {
@@ -25,12 +26,14 @@ export default function EmailSignup({ source = 'unknown' }: Props) {
     if (state.kind === 'submitting') return;
     setState({ kind: 'submitting' });
 
-    let recaptchaToken: string;
-    try {
-      recaptchaToken = await executeRecaptcha('newsletter');
-    } catch {
-      setState({ kind: 'error', message: 'Verification failed. Try again.' });
-      return;
+    let recaptchaToken: string | undefined;
+    if (isCaptchaEnabled()) {
+      try {
+        recaptchaToken = await executeRecaptcha('newsletter');
+      } catch {
+        setState({ kind: 'error', message: 'Verification failed. Try again.' });
+        return;
+      }
     }
 
     try {
@@ -71,7 +74,7 @@ export default function EmailSignup({ source = 'unknown' }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      onFocus={() => loadRecaptcha().catch(() => {})}
+      onFocus={() => { if (isCaptchaEnabled()) loadRecaptcha().catch(() => {}); }}
       className="max-w-md mx-auto"
     >
       <div className="flex flex-col sm:flex-row gap-3">

@@ -1,7 +1,14 @@
 // Per Google ToS, when the v3 badge is hidden you must show this attribution.
 // https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge
+//
+// When captcha is disabled via NEXT_PUBLIC_CAPTCHA_ENABLED=false, reCAPTCHA
+// isn't actually loaded — so the notice is unnecessary and we render nothing.
+
+import { isCaptchaEnabled } from '@/lib/captcha-flag';
 
 export default function RecaptchaNotice() {
+  if (!isCaptchaEnabled()) return null;
+
   return (
     <p className="text-[10px] font-[family-name:var(--font-montserrat)] text-white/30 leading-relaxed text-center">
       Protected by reCAPTCHA. Google{' '}

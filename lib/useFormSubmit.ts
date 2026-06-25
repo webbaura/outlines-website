@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { loadRecaptcha, executeRecaptcha } from '@/lib/recaptcha-client';
+import { isCaptchaEnabled } from '@/lib/captcha-flag';
 
 type State =
   | { status: 'idle' }
@@ -26,7 +27,7 @@ export function useFormSubmit(endpoint: string, options: Options = {}) {
   // a user starts filling the form — so by the time they hit submit the
   // token issues instantly (no perceptible delay).
   const warmCaptcha = useCallback(() => {
-    if (recaptchaAction) {
+    if (recaptchaAction && isCaptchaEnabled()) {
       loadRecaptcha().catch(() => {
         // Silent — submit will retry and surface a friendly error if needed.
       });
@@ -39,7 +40,7 @@ export function useFormSubmit(endpoint: string, options: Options = {}) {
       setFieldErrors({});
 
       let recaptchaToken: string | undefined;
-      if (recaptchaAction) {
+      if (recaptchaAction && isCaptchaEnabled()) {
         try {
           recaptchaToken = await executeRecaptcha(recaptchaAction);
         } catch {

@@ -2,6 +2,8 @@
 // Token comes from the client (grecaptcha.execute). We POST to siteverify
 // with the secret + token, check success, score, and that the action matches.
 
+import { isCaptchaEnabled } from './captcha-flag';
+
 const SCORE_THRESHOLD = 0.5;
 
 interface SiteVerifyResponse {
@@ -21,6 +23,11 @@ export async function verifyRecaptcha(
   token: unknown,
   expectedAction: string,
 ): Promise<RecaptchaResult> {
+  // Toggle: skip verification entirely when the flag is off.
+  if (!isCaptchaEnabled()) {
+    return { ok: true, score: 1 };
+  }
+
   if (typeof token !== 'string' || token.length === 0) {
     return { ok: false, reason: 'missing-token' };
   }
