@@ -12,7 +12,7 @@ export default function VisionPage() {
     <>
       {/* ── Header ───────────────────────────────────────────────── */}
       <section className="pt-40 pb-20 sm:pt-48 sm:pb-28 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <p className="text-sm font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em] mb-8">
             Vision
           </p>
@@ -50,7 +50,7 @@ export default function VisionPage() {
               alt="Outlines"
               width={120}
               height={120}
-              className="w-24 h-24 sm:w-32 sm:h-32 opacity-80"
+              className="w-24 h-24 sm:w-32 sm:h-32 object-cover opacity-80"
             />
           </ScrollReveal>
         </div>

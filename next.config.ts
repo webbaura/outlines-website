@@ -1,10 +1,28 @@
 import type { NextConfig } from 'next';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 /**
  * Webbaura Build Rules — Next.js enforcement layer
  * Every site built by Webbaura inherits these defaults.
  * Rules: Performance, Security, SEO, CWV compliance.
  */
+
+// Pin Turbopack's workspace root to this project so the stub lockfile in
+// the parent dir doesn't pull it up a level (which breaks Tailwind scanning
+// and incremental compilation).
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
+
+const isDev = process.env.NODE_ENV !== 'production';
+
+// Turbopack/HMR needs eval + websocket in dev. Prod stays locked down.
+const scriptSrc = isDev
+  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+  : "script-src 'self' 'unsafe-inline'";
+
+const connectSrc = isDev
+  ? "connect-src 'self' ws: wss:"
+  : "connect-src 'self'";
 
 const securityHeaders = [
   { key: 'X-Content-Type-Options',    value: 'nosniff' },
@@ -16,11 +34,13 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      scriptSrc,
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https:",
-      "connect-src 'self'",
+      "media-src 'self' https:",
+      "frame-src https://player.vimeo.com https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com",
+      connectSrc,
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -39,12 +59,8 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
-      // Content-hashed static assets — cache forever
-      {
-        source: '/_next/static/(.*)',
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
-      },
       // Public assets — 30 days with SWR
+      // (Next.js already sets immutable cache headers on /_next/static automatically)
       {
         source: '/(.*)\\.(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2)',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' }],
@@ -65,6 +81,11 @@ const nextConfig: NextConfig = {
   // Bundle optimisation — reduces JS parsed on load (INP)
   experimental: {
     optimizePackageImports: ['lucide-react'],
+  },
+
+  // Pin Turbopack root so it doesn't latch onto the parent dir's stub lockfile.
+  turbopack: {
+    root: projectRoot,
   },
 
   // Strip console.log in production builds

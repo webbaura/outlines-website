@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import SocialRail from '@/components/SocialRail';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -48,9 +49,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={montserrat.variable}>
+    <html lang="en" className={montserrat.variable} data-scroll-behavior="smooth">
       <body className="font-[family-name:var(--font-montserrat)]">
         <Nav />
+        <SocialRail />
         <main>{children}</main>
         <Footer />
       </body>
