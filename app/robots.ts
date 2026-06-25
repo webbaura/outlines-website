@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const BASE = 'https://outlines.com.au';
+const BASE = 'https://outlinesgroup.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {

@@ -121,7 +121,7 @@ export default async function EventsPage() {
       },
     },
     description: event.description,
-    organizer: { '@type': 'Organization', name: 'Outlines', url: 'https://outlines.com.au' },
+    organizer: { '@type': 'Organization', name: 'Outlines', url: 'https://outlinesgroup.com' },
     offers: event.ticketsUrl
       ? {
           '@type': 'Offer',

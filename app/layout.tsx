@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   keywords: ['house music', 'Melbourne events', 'electronic music', 'Outlines', 'music culture'],
   authors: [{ name: 'Outlines' }],
   creator: 'Outlines',
-  metadataBase: new URL('https://outlines.com.au'),
+  metadataBase: new URL('https://outlinesgroup.com'),
   openGraph: {
     type: 'website',
     locale: 'en_AU',
