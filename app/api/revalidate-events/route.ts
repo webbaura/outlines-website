@@ -23,7 +23,10 @@ function authorize(req: Request): boolean {
 }
 
 function doRevalidate() {
-  revalidateTag('events');
+  // Next 16 requires a second arg. `{ expire: 0 }` forces immediate expiration,
+  // which is what we want for webhook-driven invalidation (vs. the default
+  // stale-while-revalidate semantics of `'max'`).
+  revalidateTag('events', { expire: 0 });
   revalidatePath('/');
   revalidatePath('/events');
 }

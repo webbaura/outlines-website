@@ -19,12 +19,13 @@ export default function Marquee({
   size = 'sm',
   className = '',
 }: Props) {
-  const sequence = items.flatMap((item, i) =>
-    i === items.length - 1 ? [item, separator] : [item, separator],
-  );
-  // Repeat 3x — guarantees the duplicated track fills the viewport on wide screens.
+  // Build [item, sep, item, sep, ...] then repeat 3x for seamless looping.
+  const sequence = items.flatMap((item) => [
+    { text: item, isSep: false },
+    { text: separator, isSep: true },
+  ]);
   const tracks = Array.from({ length: 3 }).flatMap((_, t) =>
-    sequence.map((w, j) => ({ key: `${t}-${j}`, w })),
+    sequence.map((s, j) => ({ key: `${t}-${j}`, ...s })),
   );
 
   const textSize = size === 'md' ? 'text-sm' : 'text-xs';
@@ -38,9 +39,16 @@ export default function Marquee({
         className="marquee text-white/20 font-[family-name:var(--font-montserrat)] uppercase tracking-[0.4em]"
         style={{ animationDuration: `${speed}s` }}
       >
-        {tracks.map(({ key, w }) => (
-          <span key={key} className={`px-6 shrink-0 ${textSize}`}>
-            {w}
+        {tracks.map(({ key, text, isSep }) => (
+          <span
+            key={key}
+            className={
+              isSep
+                ? `px-6 shrink-0 ${textSize}`
+                : `px-6 shrink-0 ${textSize} hover:text-white transition-colors duration-200`
+            }
+          >
+            {text}
           </span>
         ))}
       </div>
