@@ -46,11 +46,11 @@ export default function VisionPage() {
           {/* ── Logo ───────────────────────────────────────────────── */}
           <ScrollReveal className="flex justify-center pt-8">
             <Image
-              src="/assets/brand/logo-dark.jpg"
+              src="/assets/brand/outlines-transparent.webp"
               alt="Outlines"
-              width={120}
-              height={120}
-              className="w-24 h-24 sm:w-32 sm:h-32 object-cover opacity-80"
+              width={240}
+              height={266}
+              className="w-28 sm:w-36 h-auto opacity-85 select-none"
             />
           </ScrollReveal>
         </div>

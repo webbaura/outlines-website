@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { validators, isLikelyBot } from '@/lib/validation';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 import { insertRecord } from '@/lib/nocodb';
 
 type DjBody = Record<string, unknown>;
@@ -14,6 +15,14 @@ export async function POST(req: Request) {
 
   if (isLikelyBot(body)) {
     return NextResponse.json({ ok: true });
+  }
+
+  const captcha = await verifyRecaptcha(body.recaptchaToken, 'dj_application');
+  if (!captcha.ok) {
+    return NextResponse.json(
+      { ok: false, error: 'Verification failed. Please try again.' },
+      { status: 400 },
+    );
   }
 
   const fullName = validators.required('Full name', body.fullName);

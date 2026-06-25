@@ -142,3 +142,11 @@ body {
   background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }
+
+/* ── reCAPTCHA v3 — hide the floating badge. Per Google ToS this is
+       allowed as long as the attribution is visible (see RecaptchaNotice). */
+.grecaptcha-badge {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

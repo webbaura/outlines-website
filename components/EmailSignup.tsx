@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { loadRecaptcha, executeRecaptcha } from '@/lib/recaptcha-client';
+import RecaptchaNotice from './forms/RecaptchaNotice';
 
 interface Props {
   source?: string;
@@ -23,11 +25,19 @@ export default function EmailSignup({ source = 'unknown' }: Props) {
     if (state.kind === 'submitting') return;
     setState({ kind: 'submitting' });
 
+    let recaptchaToken: string;
+    try {
+      recaptchaToken = await executeRecaptcha('newsletter');
+    } catch {
+      setState({ kind: 'error', message: 'Verification failed. Try again.' });
+      return;
+    }
+
     try {
       const res = await fetch('/api/forms/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source, _hp: hp }),
+        body: JSON.stringify({ email, source, recaptchaToken, _hp: hp }),
       });
       const data = (await res.json()) as
         | { ok: true }
@@ -59,7 +69,11 @@ export default function EmailSignup({ source = 'unknown' }: Props) {
   const isSubmitting = state.kind === 'submitting';
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+    <form
+      onSubmit={handleSubmit}
+      onFocus={() => loadRecaptcha().catch(() => {})}
+      className="max-w-md mx-auto"
+    >
       <div className="flex flex-col sm:flex-row gap-3">
         <label htmlFor="email-signup" className="sr-only">
           Email address
@@ -99,6 +113,9 @@ export default function EmailSignup({ source = 'unknown' }: Props) {
           {state.message}
         </p>
       )}
+      <div className="mt-4">
+        <RecaptchaNotice />
+      </div>
     </form>
   );
 }

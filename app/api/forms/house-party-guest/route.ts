@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { validators, isLikelyBot } from '@/lib/validation';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 import { insertRecord } from '@/lib/nocodb';
 
 // Fields here must match NocoDB column names exactly. See README.
@@ -16,6 +17,14 @@ export async function POST(req: Request) {
   if (isLikelyBot(body)) {
     // Silently accept — don't tip off the bot.
     return NextResponse.json({ ok: true });
+  }
+
+  const captcha = await verifyRecaptcha(body.recaptchaToken, 'house_party_guest');
+  if (!captcha.ok) {
+    return NextResponse.json(
+      { ok: false, error: 'Verification failed. Please try again.' },
+      { status: 400 },
+    );
   }
 
   const name = validators.required('Name', body.name);

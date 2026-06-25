@@ -24,7 +24,7 @@ export default function DJsPage() {
       <section className="pt-40 pb-12 sm:pt-48 sm:pb-16 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-sm font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em] mb-8">
-            DJ with Outlines
+            Proper Sound
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight">
             Sharp electronic music. The right rooms.

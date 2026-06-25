@@ -51,11 +51,11 @@ export default function Nav() {
         >
           <Link href="/" className="relative hover:opacity-80 transition-opacity">
             <Image
-              src="/assets/brand/logo-dark.jpg"
+              src="/assets/brand/outlines-transparent.webp"
               alt="Outlines"
-              width={48}
-              height={48}
-              className="rounded-full w-11 h-11 object-cover"
+              width={120}
+              height={130}
+              className="h-10 w-auto sm:h-11 select-none"
               priority
             />
           </Link>

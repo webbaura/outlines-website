@@ -5,6 +5,7 @@ import FormField from './FormField';
 import FormTextarea from './FormTextarea';
 import SubmitButton from './SubmitButton';
 import Honeypot from './Honeypot';
+import RecaptchaNotice from './RecaptchaNotice';
 import { useFormSubmit } from '@/lib/useFormSubmit';
 
 const INITIAL = {
@@ -25,7 +26,10 @@ type FieldKey = keyof typeof INITIAL;
 
 export default function DJApplicationForm() {
   const [form, setForm] = useState(INITIAL);
-  const { state, fieldErrors, submit } = useFormSubmit('/api/forms/dj');
+  const { state, fieldErrors, submit, warmCaptcha } = useFormSubmit(
+    '/api/forms/dj',
+    { recaptchaAction: 'dj_application' },
+  );
 
   const onChange =
     (key: FieldKey) =>
@@ -54,7 +58,12 @@ export default function DJApplicationForm() {
   const submitting = state.status === 'submitting';
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-7" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      onFocus={warmCaptcha}
+      className="flex flex-col gap-7"
+      noValidate
+    >
       <Honeypot />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-7">
@@ -183,8 +192,9 @@ export default function DJApplicationForm() {
         </p>
       )}
 
-      <div className="pt-4">
+      <div className="pt-4 flex flex-col gap-4">
         <SubmitButton label="Submit interest" loading={submitting} />
+        <RecaptchaNotice />
       </div>
     </form>
   );

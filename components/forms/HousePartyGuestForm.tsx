@@ -4,11 +4,15 @@ import { useState } from 'react';
 import FormField from './FormField';
 import SubmitButton from './SubmitButton';
 import Honeypot from './Honeypot';
+import RecaptchaNotice from './RecaptchaNotice';
 import { useFormSubmit } from '@/lib/useFormSubmit';
 
 export default function HousePartyGuestForm() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', instagram: '' });
-  const { state, fieldErrors, submit } = useFormSubmit('/api/forms/house-party-guest');
+  const { state, fieldErrors, submit, warmCaptcha } = useFormSubmit(
+    '/api/forms/house-party-guest',
+    { recaptchaAction: 'house_party_guest' },
+  );
 
   const onChange = (key: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -37,7 +41,12 @@ export default function HousePartyGuestForm() {
   const submitting = state.status === 'submitting';
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      onFocus={warmCaptcha}
+      className="flex flex-col gap-6"
+      noValidate
+    >
       <Honeypot />
 
       <FormField
@@ -91,8 +100,9 @@ export default function HousePartyGuestForm() {
         </p>
       )}
 
-      <div className="pt-2">
+      <div className="pt-2 flex flex-col gap-4">
         <SubmitButton label="Get invited" loading={submitting} />
+        <RecaptchaNotice />
       </div>
     </form>
   );

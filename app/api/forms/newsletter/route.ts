@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { validators, isLikelyBot } from '@/lib/validation';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 import { insertRecord } from '@/lib/nocodb';
 
 type NewsletterBody = Record<string, unknown>;
@@ -14,6 +15,14 @@ export async function POST(req: Request) {
 
   if (isLikelyBot(body)) {
     return NextResponse.json({ ok: true });
+  }
+
+  const captcha = await verifyRecaptcha(body.recaptchaToken, 'newsletter');
+  if (!captcha.ok) {
+    return NextResponse.json(
+      { ok: false, error: 'Verification failed. Please try again.' },
+      { status: 400 },
+    );
   }
 
   const email = validators.email(body.email);

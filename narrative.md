@@ -55,7 +55,7 @@ Lucide React only. Used sparingly — for functional UI (menu, arrow, mail), not
 ### /events
 **Events listing.** Clean card/list layout. Each event card: date block (day + month, prominent), event name, venue/location, brief description.
 
-**Empty state** — When no real events exist yet: "Something is coming. Sign up to be first." — styled intentionally, not like an error. The sign-up form repeated here.
+**Empty state** — When no real events exist yet: "Something is coming. Sign up to be first to know." — styled intentionally, not like an error. The sign-up form repeated here.
 
 ## Navigation
 Minimal top nav. Logo left, links right. Three items: Home, Vision, Events. Mobile: hamburger menu, full-screen dark overlay with links centred.

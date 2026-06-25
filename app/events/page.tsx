@@ -165,7 +165,7 @@ export default async function EventsPage() {
                 Something is coming
               </h2>
               <p className="text-white/50 text-sm font-[family-name:var(--font-montserrat)] mb-2">
-                Sign up to be first.
+                Sign up to be first to know.
               </p>
             </ScrollReveal>
           )}

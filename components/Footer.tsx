@@ -42,11 +42,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-8 md:gap-4">
           <div className="flex items-center gap-3">
             <Image
-              src="/assets/brand/logo-dark.jpg"
+              src="/assets/brand/outlines-transparent.webp"
               alt="Outlines"
-              width={32}
-              height={32}
-              className="rounded-full w-7 h-7 object-cover opacity-70"
+              width={64}
+              height={70}
+              className="h-7 w-auto opacity-80 select-none"
             />
             <span className="text-white/40 text-xs font-[family-name:var(--font-montserrat)] uppercase tracking-[0.15em]">
               Outlines Group
