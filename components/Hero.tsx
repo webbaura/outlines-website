@@ -26,13 +26,7 @@ export default function Hero() {
           />
         </div>
 
-        <h1 className="hero-line hero-line-2 text-4xl sm:text-6xl lg:text-[6rem] font-bold leading-[0.95] tracking-tight">
-          <span className="block">Outlining</span>
-          <span className="block hero-stroke">electronic</span>
-          <span className="block hero-stroke">music culture.</span>
-        </h1>
-
-        <div className="hero-line hero-line-3 mt-10 sm:mt-12 flex flex-col sm:flex-row items-center gap-3">
+        <div className="hero-line hero-line-3 flex flex-col sm:flex-row items-center gap-3">
           <Link
             href="/events"
             className="group inline-flex items-center gap-3 bg-white text-black pl-6 pr-5 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] hover:bg-white/90 transition-colors"
