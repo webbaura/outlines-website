@@ -36,7 +36,6 @@ export const djForm = defineForm({
       required: false,
       rows: 4,
       maxLength: 4000,
-      hint: 'Optional. Share what you make — releases, works in progress, aliases, links to tracks or Bandcamp.',
     },
   ],
 });
