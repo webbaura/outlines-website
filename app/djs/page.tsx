@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import ScrollReveal from '@/components/ScrollReveal';
 import Marquee from '@/components/Marquee';
-import DJApplicationForm from '@/components/forms/DJApplicationForm';
+import SchemaForm from '@/components/forms/SchemaForm';
+import { djForm } from '@/lib/forms/dj';
 
 export const metadata: Metadata = {
   title: 'DJ with Outlines',
@@ -60,7 +61,7 @@ export default function DJsPage() {
           <h2 className="text-3xl sm:text-4xl font-semibold leading-tight mb-12">
             Register your interest.
           </h2>
-          <DJApplicationForm />
+          <SchemaForm config={djForm} />
         </ScrollReveal>
       </section>
     </>

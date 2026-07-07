@@ -60,13 +60,25 @@ The script is idempotent: rerunning it skips tables that already exist.
 
 ### Table schema (what the script creates)
 
-For reference. The bootstrap script creates these for you — you should not need
-to make them manually.
+Form tables are derived from the configs in `lib/forms/*.ts` — one source of
+truth. To add or remove a field:
+
+1. Edit the field list in the relevant form config (e.g. `lib/forms/dj.ts`).
+2. Add/remove the column in NocoDB (either manually, or re-run
+   `npm run setup:nocodb` — it only creates missing tables, never alters
+   existing ones).
+3. Run `npm run verify:nocodb` to confirm the code and NocoDB agree.
+
+The client renderer (`SchemaForm`), the API route handler, and the setup
+script all read from the same config, so a field appears everywhere at once.
+
+Current tables (created by the script):
 
 **`house_party_guests`** — `Name`, `Phone`, `Email`, `Instagram`, `SubmittedAt`
 **`house_party_hosts`** — `Name`, `Phone`, `Email`, `SubmittedAt`
 **`djs`** — `FullName`, `DJName`, `DOB`, `Email`, `Phone`, `Genres`, `Instagram`,
 `TikTok`, `SoundCloud`, `Experience`, `Support`, `SubmittedAt`
+**`newsletter`** — `Email`, `Source`, `SubmittedAt`
 
 ### Environment variables
 

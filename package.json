@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "setup:nocodb": "tsx scripts/setup-nocodb.ts"
+    "setup:nocodb": "tsx scripts/setup-nocodb.ts",
+    "verify:nocodb": "tsx --env-file=.env.local scripts/verify-nocodb.ts"
   },
   "dependencies": {
     "lucide-react": "^0.576.0",

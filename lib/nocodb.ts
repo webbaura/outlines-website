@@ -1,14 +1,17 @@
 // NocoDB REST client.
 // All env vars are read at call-time so missing config fails per-request, not at boot.
 
-type NocoTable = 'guests' | 'hosts' | 'djs' | 'events' | 'newsletter';
+export type NocoTable = 'guests' | 'hosts' | 'djs' | 'events' | 'newsletter';
 
-const TABLE_ENV: Record<NocoTable, string> = {
-  guests:     'NOCODB_TABLE_HOUSE_PARTY_GUESTS',
-  hosts:      'NOCODB_TABLE_HOUSE_PARTY_HOSTS',
-  djs:        'NOCODB_TABLE_DJS',
-  events:     'NOCODB_TABLE_EVENTS',
-  newsletter: 'NOCODB_TABLE_NEWSLETTER',
+// One place that maps our internal table name → NocoDB table title + env var
+// holding the table ID. Consumed by the runtime client below plus the setup
+// and verify scripts, so titles/env vars can never drift.
+export const TABLE_META: Record<NocoTable, { envKey: string; title: string }> = {
+  guests:     { envKey: 'NOCODB_TABLE_HOUSE_PARTY_GUESTS', title: 'house_party_guests' },
+  hosts:      { envKey: 'NOCODB_TABLE_HOUSE_PARTY_HOSTS', title: 'house_party_hosts' },
+  djs:        { envKey: 'NOCODB_TABLE_DJS',               title: 'djs' },
+  events:     { envKey: 'NOCODB_TABLE_EVENTS',            title: 'events' },
+  newsletter: { envKey: 'NOCODB_TABLE_NEWSLETTER',        title: 'newsletter' },
 };
 
 function readEnv(): { baseUrl: string; token: string } {
@@ -21,8 +24,9 @@ function readEnv(): { baseUrl: string; token: string } {
 }
 
 function tableId(table: NocoTable): string {
-  const id = process.env[TABLE_ENV[table]];
-  if (!id) throw new Error(`Missing env: ${TABLE_ENV[table]}`);
+  const envKey = TABLE_META[table].envKey;
+  const id = process.env[envKey];
+  if (!id) throw new Error(`Missing env: ${envKey}`);
   return id;
 }
 

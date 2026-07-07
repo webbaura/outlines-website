@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { loadRecaptcha, executeRecaptcha } from '@/lib/recaptcha-client';
 import { isCaptchaEnabled } from '@/lib/captcha-flag';
+import { newsletterForm } from '@/lib/forms/newsletter';
 import RecaptchaNotice from './forms/RecaptchaNotice';
 
 interface Props {
@@ -29,7 +30,7 @@ export default function EmailSignup({ source = 'unknown' }: Props) {
     let recaptchaToken: string | undefined;
     if (isCaptchaEnabled()) {
       try {
-        recaptchaToken = await executeRecaptcha('newsletter');
+        recaptchaToken = await executeRecaptcha(newsletterForm.recaptchaAction);
       } catch {
         setState({ kind: 'error', message: 'Verification failed. Try again.' });
         return;
@@ -37,7 +38,7 @@ export default function EmailSignup({ source = 'unknown' }: Props) {
     }
 
     try {
-      const res = await fetch('/api/forms/newsletter', {
+      const res = await fetch(newsletterForm.endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, source, recaptchaToken, _hp: hp }),

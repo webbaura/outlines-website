@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Modal from '@/components/Modal';
-import HousePartyGuestForm from '@/components/forms/HousePartyGuestForm';
-import HousePartyHostForm from '@/components/forms/HousePartyHostForm';
+import SchemaForm from '@/components/forms/SchemaForm';
+import { guestForm } from '@/lib/forms/guest';
+import { hostForm } from '@/lib/forms/host';
 
 type Mode = 'guest' | 'host' | null;
 
@@ -53,11 +54,11 @@ export default function HousePartiesCTA() {
       </div>
 
       <Modal open={mode === 'guest'} onClose={() => setMode(null)} title="Get invited">
-        <HousePartyGuestForm />
+        <SchemaForm config={guestForm} />
       </Modal>
 
       <Modal open={mode === 'host'} onClose={() => setMode(null)} title="Apply to host">
-        <HousePartyHostForm />
+        <SchemaForm config={hostForm} />
       </Modal>
     </>
   );

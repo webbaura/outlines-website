@@ -1,9 +1,13 @@
 /**
  * NocoDB table bootstrap.
  *
- * Creates the three tables this site relies on, with the exact columns the
- * API routes expect. Idempotent: skips a table if a table with the same name
- * already exists in the base.
+ * Creates the tables this site relies on. Form tables (djs, house_party_guests,
+ * house_party_hosts, newsletter) are derived from the form configs in
+ * lib/forms/* — one source of truth for column names. The events table isn't
+ * a form, so its schema stays inline here.
+ *
+ * Idempotent: skips a table if a table with the same title already exists in
+ * the base. Never alters or deletes existing tables.
  *
  * Usage:
  *   NOCODB_URL=https://app.nocodb.com \
@@ -14,6 +18,10 @@
  * Find your base ID: open the base in NocoDB → look at the URL
  *   .../dashboard/#/nc/<BASE_ID>/...   (the segment after `/nc/`)
  */
+
+import { TABLE_META, type NocoTable } from '../lib/nocodb';
+import { FORM_CONFIGS } from '../lib/forms';
+import type { Field, FieldKind, FormConfig } from '../lib/forms/types';
 
 type UIType =
   | 'SingleLineText'
@@ -36,80 +44,64 @@ interface ColumnSpec {
 interface TableSpec {
   title: string;
   columns: ColumnSpec[];
-  envKey: string; // env var name to print at the end
+  envKey: string;
 }
 
+// Field kind → NocoDB column type. Used to derive form tables from configs.
+const KIND_TO_UIDT: Record<FieldKind, UIType> = {
+  text: 'SingleLineText',
+  longtext: 'LongText',
+  email: 'Email',
+  phone: 'PhoneNumber',
+  url: 'URL',
+  optionalUrl: 'URL',
+  date: 'Date',
+};
+
+function fieldColumn(field: Field): ColumnSpec {
+  return { title: field.column, uidt: KIND_TO_UIDT[field.kind] };
+}
+
+function formToTableSpec(config: FormConfig): TableSpec {
+  const meta = TABLE_META[config.table];
+  return {
+    title: meta.title,
+    envKey: meta.envKey,
+    columns: [
+      ...config.fields.map(fieldColumn),
+      { title: 'SubmittedAt', uidt: 'DateTime' },
+    ],
+  };
+}
+
+// events is not driven by a form config — declared inline.
+const EVENTS_META = TABLE_META['events' as NocoTable];
+const EVENTS_TABLE: TableSpec = {
+  title: EVENTS_META.title,
+  envKey: EVENTS_META.envKey,
+  columns: [
+    { title: 'Name', uidt: 'SingleLineText' },
+    { title: 'Subtitle', uidt: 'SingleLineText' },
+    { title: 'StartDate', uidt: 'DateTime' },
+    { title: 'EndDate', uidt: 'DateTime' },
+    { title: 'Venue', uidt: 'SingleLineText' },
+    { title: 'Location', uidt: 'SingleLineText' },
+    { title: 'Description', uidt: 'LongText' },
+    { title: 'TimeDisplay', uidt: 'SingleLineText' },
+    { title: 'TicketStatus', uidt: 'SingleLineText' },
+    { title: 'TicketsUrl', uidt: 'URL' },
+    {
+      title: 'Tags',
+      uidt: 'MultiSelect',
+      options: ['general', 'house_party', 'launch', 'takeover', 'rooftop'],
+    },
+    { title: 'Published', uidt: 'Checkbox' },
+  ],
+};
+
 const TABLES: TableSpec[] = [
-  {
-    title: 'house_party_guests',
-    envKey: 'NOCODB_TABLE_HOUSE_PARTY_GUESTS',
-    columns: [
-      { title: 'Name', uidt: 'SingleLineText' },
-      { title: 'Phone', uidt: 'PhoneNumber' },
-      { title: 'Email', uidt: 'Email' },
-      { title: 'Instagram', uidt: 'SingleLineText' },
-      { title: 'SubmittedAt', uidt: 'DateTime' },
-    ],
-  },
-  {
-    title: 'house_party_hosts',
-    envKey: 'NOCODB_TABLE_HOUSE_PARTY_HOSTS',
-    columns: [
-      { title: 'Name', uidt: 'SingleLineText' },
-      { title: 'Phone', uidt: 'PhoneNumber' },
-      { title: 'Email', uidt: 'Email' },
-      { title: 'SubmittedAt', uidt: 'DateTime' },
-    ],
-  },
-  {
-    title: 'djs',
-    envKey: 'NOCODB_TABLE_DJS',
-    columns: [
-      { title: 'FullName', uidt: 'SingleLineText' },
-      { title: 'DJName', uidt: 'SingleLineText' },
-      { title: 'DOB', uidt: 'Date' },
-      { title: 'Email', uidt: 'Email' },
-      { title: 'Phone', uidt: 'PhoneNumber' },
-      { title: 'Genres', uidt: 'SingleLineText' },
-      { title: 'Instagram', uidt: 'SingleLineText' },
-      { title: 'TikTok', uidt: 'URL' },
-      { title: 'SoundCloud', uidt: 'URL' },
-      { title: 'Experience', uidt: 'LongText' },
-      { title: 'Support', uidt: 'LongText' },
-      { title: 'SubmittedAt', uidt: 'DateTime' },
-    ],
-  },
-  {
-    title: 'newsletter',
-    envKey: 'NOCODB_TABLE_NEWSLETTER',
-    columns: [
-      { title: 'Email', uidt: 'Email' },
-      { title: 'Source', uidt: 'SingleLineText' },
-      { title: 'SubmittedAt', uidt: 'DateTime' },
-    ],
-  },
-  {
-    title: 'events',
-    envKey: 'NOCODB_TABLE_EVENTS',
-    columns: [
-      { title: 'Name', uidt: 'SingleLineText' },
-      { title: 'Subtitle', uidt: 'SingleLineText' },
-      { title: 'StartDate', uidt: 'DateTime' },
-      { title: 'EndDate', uidt: 'DateTime' },
-      { title: 'Venue', uidt: 'SingleLineText' },
-      { title: 'Location', uidt: 'SingleLineText' },
-      { title: 'Description', uidt: 'LongText' },
-      { title: 'TimeDisplay', uidt: 'SingleLineText' },
-      { title: 'TicketStatus', uidt: 'SingleLineText' },
-      { title: 'TicketsUrl', uidt: 'URL' },
-      {
-        title: 'Tags',
-        uidt: 'MultiSelect',
-        options: ['general', 'house_party', 'launch', 'takeover', 'rooftop'],
-      },
-      { title: 'Published', uidt: 'Checkbox' },
-    ],
-  },
+  ...FORM_CONFIGS.map(formToTableSpec),
+  EVENTS_TABLE,
 ];
 
 function readEnv(): { baseUrl: string; token: string; baseId: string } {
