@@ -36,7 +36,7 @@ export default function PortraitVideo({ src, embedUrl, caption, poster, classNam
             src={embedUrl}
             title={caption ?? 'Video'}
             loading="lazy"
-            allow="autoplay; encrypted-media; picture-in-picture"
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
             allowFullScreen
             className="absolute inset-0 w-full h-full"
           />
