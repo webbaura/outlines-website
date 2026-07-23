@@ -14,7 +14,8 @@ export type FieldKind =
   | 'phone'
   | 'url'          // required URL
   | 'optionalUrl'  // may be empty
-  | 'date';        // ISO yyyy-mm-dd
+  | 'date'         // ISO yyyy-mm-dd
+  | 'urlList';     // array of URLs, rendered as repeatable rows with a + control
 
 export interface Field {
   readonly key: string;         // form state key, e.g. 'fullName'
@@ -42,6 +43,8 @@ export interface Field {
   readonly layout?: 'half' | 'full'; // half = 2-col grid; full = own row
   readonly rows?: number;            // longtext
   readonly maxLength?: number;       // text/longtext
+  readonly maxItems?: number;        // urlList (default 20)
+  readonly addLabel?: string;        // urlList "+" button label
 }
 
 export interface SuccessCopy {
@@ -75,6 +78,8 @@ export function defineForm<const T extends readonly Field[]>(
 // the server enforces.
 export function isRequired(field: Field): boolean {
   if (field.kind === 'optionalUrl') return false;
-  if (field.kind === 'text' || field.kind === 'longtext') return field.required ?? true;
+  if (field.kind === 'text' || field.kind === 'longtext' || field.kind === 'urlList') {
+    return field.required ?? true;
+  }
   return true;
 }

@@ -1,7 +1,7 @@
 // NocoDB REST client.
 // All env vars are read at call-time so missing config fails per-request, not at boot.
 
-export type NocoTable = 'guests' | 'hosts' | 'djs' | 'events' | 'newsletter';
+export type NocoTable = 'guests' | 'hosts' | 'djs' | 'events' | 'newsletter' | 'label';
 
 // One place that maps our internal table name → NocoDB table title + env var
 // holding the table ID. Consumed by the runtime client below plus the setup
@@ -12,6 +12,7 @@ export const TABLE_META: Record<NocoTable, { envKey: string; title: string }> = 
   djs:        { envKey: 'NOCODB_TABLE_DJS',               title: 'djs' },
   events:     { envKey: 'NOCODB_TABLE_EVENTS',            title: 'events' },
   newsletter: { envKey: 'NOCODB_TABLE_NEWSLETTER',        title: 'newsletter' },
+  label:      { envKey: 'NOCODB_TABLE_LABEL',             title: 'label_submissions' },
 };
 
 function readEnv(): { baseUrl: string; token: string } {

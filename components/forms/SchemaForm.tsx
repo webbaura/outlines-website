@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import FormField from './FormField';
 import FormTextarea from './FormTextarea';
+import UrlList from './UrlList';
 import SubmitButton from './SubmitButton';
 import Honeypot from './Honeypot';
 import RecaptchaNotice from './RecaptchaNotice';
@@ -36,7 +37,7 @@ function toRows(fields: readonly Field[]): Row[] {
   };
   for (const f of fields) {
     if (f.hidden) continue;
-    if (f.kind !== 'longtext' && f.layout === 'half') {
+    if (f.kind !== 'longtext' && f.kind !== 'urlList' && f.layout === 'half') {
       grid.push(f);
     } else {
       flush();
@@ -48,9 +49,12 @@ function toRows(fields: readonly Field[]): Row[] {
 }
 
 export default function SchemaForm({ config }: { config: FormConfig }) {
-  const [form, setForm] = useState<Record<string, string>>(() => {
-    const out: Record<string, string> = {};
-    for (const f of config.fields) if (!f.hidden) out[f.key] = '';
+  const [form, setForm] = useState<Record<string, string | string[]>>(() => {
+    const out: Record<string, string | string[]> = {};
+    for (const f of config.fields) {
+      if (f.hidden) continue;
+      out[f.key] = f.kind === 'urlList' ? [''] : '';
+    }
     return out;
   });
 
@@ -65,6 +69,9 @@ export default function SchemaForm({ config }: { config: FormConfig }) {
     (key: string) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((prev) => ({ ...prev, [key]: e.target.value }));
+
+  const onListChange = (key: string) => (next: string[]) =>
+    setForm((prev) => ({ ...prev, [key]: next }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,31 +101,55 @@ export default function SchemaForm({ config }: { config: FormConfig }) {
     >
       <Honeypot />
 
-      {rows.map((row, i) =>
-        row.kind === 'grid' ? (
-          <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-7">
-            {row.fields.map((field) => (
-              <FieldNode
-                key={field.key}
-                field={field}
-                value={form[field.key] ?? ''}
-                error={fieldErrors[field.key]}
-                onChange={onChange(field.key)}
-                disabled={submitting}
-              />
-            ))}
-          </div>
-        ) : (
+      {rows.map((row, i) => {
+        if (row.kind === 'grid') {
+          return (
+            <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-7">
+              {row.fields.map((field) => (
+                <FieldNode
+                  key={field.key}
+                  field={field}
+                  value={(form[field.key] as string) ?? ''}
+                  error={fieldErrors[field.key]}
+                  onChange={onChange(field.key)}
+                  disabled={submitting}
+                />
+              ))}
+            </div>
+          );
+        }
+        const field = row.field;
+        if (field.kind === 'urlList') {
+          const value = form[field.key];
+          const listValue = Array.isArray(value) ? value : [''];
+          return (
+            <UrlList
+              key={i}
+              label={field.label}
+              name={field.key}
+              values={listValue}
+              onChange={onListChange(field.key)}
+              disabled={submitting}
+              required={isRequired(field)}
+              error={fieldErrors[field.key]}
+              hint={field.hint}
+              placeholder={field.placeholder}
+              maxItems={field.maxItems}
+              addLabel={field.addLabel}
+            />
+          );
+        }
+        return (
           <FieldNode
             key={i}
-            field={row.field}
-            value={form[row.field.key] ?? ''}
-            error={fieldErrors[row.field.key]}
-            onChange={onChange(row.field.key)}
+            field={field}
+            value={(form[field.key] as string) ?? ''}
+            error={fieldErrors[field.key]}
+            onChange={onChange(field.key)}
             disabled={submitting}
           />
-        ),
-      )}
+        );
+      })}
 
       {state.status === 'error' && (
         <p className="text-white/70 text-sm border border-white/15 px-4 py-3" role="alert">

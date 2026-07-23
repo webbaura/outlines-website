@@ -56,6 +56,7 @@ const KIND_TO_UIDT: Record<FieldKind, UIType> = {
   url: 'URL',
   optionalUrl: 'URL',
   date: 'Date',
+  urlList: 'LongText', // newline-joined list of URLs
 };
 
 function fieldColumn(field: Field): ColumnSpec {

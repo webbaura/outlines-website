@@ -35,5 +35,28 @@ export function validateField(field: Field, value: unknown): FieldResult<string>
       return validators.optionalUrl(value);
     case 'date':
       return validators.isoDate(value);
+    case 'urlList': {
+      const required = field.required ?? true;
+      const max = field.maxItems ?? 20;
+      const raw = Array.isArray(value) ? value : [];
+      const urls: string[] = [];
+      for (const item of raw) {
+        const s = typeof item === 'string' ? item.trim() : '';
+        if (!s) continue;
+        const r = validators.url(s);
+        if (!r.ok) {
+          return { ok: false, error: `Enter a valid URL for each ${field.label.toLowerCase()}` };
+        }
+        urls.push(r.value);
+      }
+      if (urls.length === 0) {
+        if (required) return { ok: false, error: `${field.label} is required` };
+        return { ok: true, value: '' };
+      }
+      if (urls.length > max) {
+        return { ok: false, error: `Too many links (max ${max})` };
+      }
+      return { ok: true, value: urls.join('\n') };
+    }
   }
 }
