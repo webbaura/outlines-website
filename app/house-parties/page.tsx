@@ -38,7 +38,7 @@ export default function HousePartiesPage() {
       <section className="pt-40 pb-16 sm:pt-48 sm:pb-24 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-sm font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em] mb-8">
-            Outlines House Parties
+            House Parties
           </p>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight">
             Bringing back the house party.
