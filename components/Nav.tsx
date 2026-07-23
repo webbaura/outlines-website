@@ -9,7 +9,7 @@ import { Menu, X } from 'lucide-react';
 const links = [
   { href: '/',              label: 'Home' },
   { href: '/vision',        label: 'Vision' },
-  { href: '/music-label',   label: 'Music Label' },
+  { href: '/outlines-records', label: 'Music Label' },
   { href: '/events',        label: 'Events' },
   { href: '/house-parties', label: 'House Parties' },
   { href: '/djs',           label: 'DJs' },

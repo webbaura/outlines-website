@@ -1,7 +1,7 @@
 import { defineForm } from './types';
 
 export const labelForm = defineForm({
-  endpoint: '/api/forms/music-label',
+  endpoint: '/api/forms/outlines-records',
   table: 'label',
   recaptchaAction: 'label_submission',
   submitLabel: 'Submit to label',

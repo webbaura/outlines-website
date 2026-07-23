@@ -6,27 +6,27 @@ import SchemaForm from '@/components/forms/SchemaForm';
 import { labelForm } from '@/lib/forms/label';
 
 export const metadata: Metadata = {
-  title: 'Music Label',
+  title: 'Outlines Records',
   description:
     'Outlines Records is an electronic music label focused on timeless dance music.',
-  alternates: { canonical: '/music-label' },
+  alternates: { canonical: '/outlines-records' },
   openGraph: {
-    title: 'Music Label',
+    title: 'Outlines Records',
     description:
       'Outlines Records is an electronic music label focused on timeless dance music.',
-    url: '/music-label',
+    url: '/outlines-records',
     type: 'website',
   },
 };
 
-export default function MusicLabelPage() {
+export default function OutlinesRecordsPage() {
   return (
     <>
       {/* ── Header ───────────────────────────────────────────────── */}
       <section className="pt-40 pb-20 sm:pt-48 sm:pb-28 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-sm font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em] mb-8">
-            Music Label
+            Outlines Records
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
             Outlining timeless music.
