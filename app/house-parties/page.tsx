@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Outlines is bringing back the house party. Private spaces, curated guests, proper sound. Apply to host or get invited.',
   alternates: { canonical: '/house-parties' },
   openGraph: {
-    title: 'Outlines House Parties',
+    title: 'House Party',
     description:
       'Private spaces. Curated guests. Proper sound. Apply to host or get invited.',
     url: '/house-parties',
