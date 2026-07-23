@@ -8,7 +8,7 @@ export const labelForm = defineForm({
   gap: 'lg',
   successCopy: {
     title: 'Submitted',
-    body: "Thanks for sending your music through. If it's a fit for Outlines Recordings, we'll be in touch.",
+    body: "Thanks for sending your music through. If it's a fit for Outlines Records, we'll be in touch.",
   },
   fields: [
     { key: 'fullName',   column: 'FullName',   label: 'Full name',       kind: 'text',        autoComplete: 'name',  layout: 'half' },
@@ -17,16 +17,7 @@ export const labelForm = defineForm({
     { key: 'phone',      column: 'Phone',      label: 'Mobile',          kind: 'phone',       autoComplete: 'tel',   layout: 'half' },
     { key: 'instagram',  column: 'Instagram',  label: 'Instagram',       kind: 'text',        placeholder: '@yourhandle', layout: 'half' },
     { key: 'soundcloud', column: 'SoundCloud', label: 'SoundCloud',      kind: 'optionalUrl', placeholder: 'https://soundcloud.com/…', layout: 'half' },
-    {
-      key: 'trackLinks',
-      column: 'TrackLinks',
-      label: 'Track links',
-      kind: 'urlList',
-      placeholder: 'https://…',
-      addLabel: 'Add another track',
-      maxItems: 10,
-      hint: 'Private SoundCloud, Dropbox, WeTransfer or streaming links. Add one per track.',
-    },
+    { key: 'googleDrive', column: 'GoogleDrive', label: 'Google Drive link', kind: 'url', placeholder: 'https://drive.google.com/…', hint: 'Folder or file link for stems, artwork, or extended material.' },
     {
       key: 'about',
       column: 'About',

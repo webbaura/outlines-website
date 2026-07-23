@@ -44,6 +44,12 @@ export default function Hero() {
             House Parties
           </Link>
           <Link
+            href="/music-label"
+            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+          >
+            Music Label
+          </Link>
+          <Link
             href="/djs"
             className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >

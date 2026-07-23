@@ -8,12 +8,12 @@ import { labelForm } from '@/lib/forms/label';
 export const metadata: Metadata = {
   title: 'Music Label',
   description:
-    'Outlines Recordings is an electronic music label focused on timeless dance music.',
+    'Outlines Records is an electronic music label focused on timeless dance music.',
   alternates: { canonical: '/music-label' },
   openGraph: {
     title: 'Music Label',
     description:
-      'Outlines Recordings is an electronic music label focused on timeless dance music.',
+      'Outlines Records is an electronic music label focused on timeless dance music.',
     url: '/music-label',
     type: 'website',
   },
@@ -39,7 +39,7 @@ export default function MusicLabelPage() {
         <div className="max-w-5xl mx-auto space-y-20">
           <ScrollReveal>
             <p className="text-white/60 text-lg sm:text-xl leading-relaxed max-w-2xl">
-              Outlines Recordings is an electronic music label focused on timeless dance music.
+              Outlines Records is an electronic music label focused on timeless dance music.
             </p>
           </ScrollReveal>
 
