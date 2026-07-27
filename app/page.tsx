@@ -64,7 +64,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 border border-white/10">
             <Link
               href="/house-party"
-              className="group bg-black hover:bg-white/[0.03] transition-colors p-10 sm:p-14 flex flex-col gap-3"
+              className="group bg-black/50 backdrop-blur-sm hover:bg-white/[0.05] transition-colors p-10 sm:p-14 flex flex-col gap-3"
             >
               <span className="text-xs font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em]">
                 New
@@ -81,7 +81,7 @@ export default async function Home() {
             </Link>
             <Link
               href="/djs"
-              className="group bg-black hover:bg-white/[0.03] transition-colors p-10 sm:p-14 flex flex-col gap-3"
+              className="group bg-black/50 backdrop-blur-sm hover:bg-white/[0.05] transition-colors p-10 sm:p-14 flex flex-col gap-3"
             >
               <span className="text-xs font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em]">
                 Apply

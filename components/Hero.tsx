@@ -4,7 +4,7 @@ import Marquee from '@/components/Marquee';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black py-28">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-28">
       {/* Top marquee strip */}
       <div className="absolute top-20 inset-x-0 z-10">
         <Marquee
@@ -33,25 +33,25 @@ export default function Hero() {
         <div className="hero-line hero-line-3 flex flex-col sm:flex-row items-center gap-3">
           <Link
             href="/events"
-            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+            className="inline-flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
             Events
           </Link>
           <Link
             href="/house-party"
-            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+            className="inline-flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
             House Party
           </Link>
           <Link
             href="/outlines-records"
-            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+            className="inline-flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
             Outlines Records
           </Link>
           <Link
             href="/djs"
-            className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+            className="inline-flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
             DJ with us
           </Link>

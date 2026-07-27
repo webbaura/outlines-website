@@ -37,10 +37,11 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
 }
 
 body {
-  background-color: #000000;
+  background-color: transparent;
   color: #ffffff;
   overflow-x: hidden;
 }
