@@ -11,7 +11,7 @@ const links = [
   { href: '/vision',        label: 'Vision' },
   { href: '/outlines-records', label: 'Music Label' },
   { href: '/events',        label: 'Events' },
-  { href: '/house-parties', label: 'House Parties' },
+  { href: '/house-party',   label: 'House Party' },
   { href: '/djs',           label: 'DJs' },
 ];
 

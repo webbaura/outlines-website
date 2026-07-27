@@ -38,10 +38,10 @@ export default function Hero() {
             Events
           </Link>
           <Link
-            href="/house-parties"
+            href="/house-party"
             className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
-            House Parties
+            House Party
           </Link>
           <Link
             href="/outlines-records"

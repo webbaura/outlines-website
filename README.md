@@ -20,7 +20,7 @@ app/
     house-party-guest/
     house-party-host/
     dj/
-  house-parties/             # /house-parties — guest + host CTAs
+  house-party/               # /house-party — guest + host CTAs
   djs/                       # /djs — DJ application form
   events/  vision/           # existing pages
 components/
@@ -107,9 +107,9 @@ What the integration relies on, in one place:
 
 If you self-host NocoDB later, swap `NOCODB_URL` only — the rest works identically.
 
-## Adding portrait videos to /house-parties
+## Adding portrait videos to /house-party
 
-Edit `app/house-parties/page.tsx`. The `videos` array supports either a direct
+Edit `app/house-party/page.tsx`. The `videos` array supports either a direct
 file or an embed URL:
 
 ```ts

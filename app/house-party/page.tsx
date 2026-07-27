@@ -5,15 +5,15 @@ import PortraitVideo from '@/components/PortraitVideo';
 import HousePartiesCTA from './HousePartiesCTA';
 
 export const metadata: Metadata = {
-  title: 'House Parties',
+  title: 'House Party',
   description:
     'Outlines is bringing back the house party. Private spaces, curated guests, proper sound. Apply to host or get invited.',
-  alternates: { canonical: '/house-parties' },
+  alternates: { canonical: '/house-party' },
   openGraph: {
     title: 'House Party',
     description:
       'Private spaces. Curated guests. Proper sound. Apply to host or get invited.',
-    url: '/house-parties',
+    url: '/house-party',
     type: 'website',
   },
 };
@@ -38,7 +38,7 @@ export default function HousePartiesPage() {
       <section className="pt-40 pb-16 sm:pt-48 sm:pb-24 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-sm font-[family-name:var(--font-montserrat)] text-white/40 uppercase tracking-[0.15em] mb-8">
-            House Parties
+            House Party
           </p>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight">
             Bringing back the house party.
