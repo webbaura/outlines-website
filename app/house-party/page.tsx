@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 // `src` (direct .mp4) or `embedUrl` (Vimeo/YouTube/Drive iframe).
 type Reel = { caption?: string; src?: string; embedUrl?: string };
 const videos: Reel[] = [
-  { embedUrl: 'https://drive.google.com/file/d/1UiOWKAYQO8DbStPyaucNVMIv7iM6b9hy/preview' },
+  { embedUrl: 'https://drive.google.com/file/d/1IrkGLN3ZOmtYCm-uwI3xmIjo-b941Kff/preview' },
 ];
 
 const pillars = [
