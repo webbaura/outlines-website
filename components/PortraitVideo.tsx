@@ -29,7 +29,7 @@ export default function PortraitVideo({ src, embedUrl, caption, poster, classNam
             autoPlay
             preload="metadata"
             controls
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-contain"
           />
         ) : (
           <iframe
