@@ -44,6 +44,12 @@ export default function Hero() {
             House Party
           </Link>
           <Link
+            href="/cafe-disco"
+            className="inline-flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
+          >
+            Cafe Disco
+          </Link>
+          <Link
             href="/outlines-records"
             className="inline-flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-6 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] border border-white/30 hover:bg-white hover:text-black hover:border-white transition-colors"
           >
