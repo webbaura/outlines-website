@@ -12,6 +12,7 @@ const links = [
   { href: '/outlines-records', label: 'Music Label' },
   { href: '/events',        label: 'Events' },
   { href: '/house-party',   label: 'House Party' },
+  { href: '/cafe-disco',    label: 'Cafe Disco' },
   { href: '/djs',           label: 'DJs' },
 ];
 

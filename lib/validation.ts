@@ -58,6 +58,28 @@ export const validators = {
     if (s.length > max) return { ok: false, error: `${label} too long` };
     return { ok: true, value: s };
   },
+
+  // Normalises any of `@handle`, `handle`, `instagram.com/handle`,
+  // `https://www.instagram.com/handle/` to `https://instagram.com/<handle>`
+  // so NocoDB renders it as a link. Passes through empty when optional.
+  instagram(v: unknown, required: boolean): FieldResult<string> {
+    const raw = TRIM_EMPTY(v);
+    if (!raw) {
+      return required ? { ok: false, error: 'Instagram is required' } : { ok: true, value: '' };
+    }
+    const handle = raw
+      .replace(/^https?:\/\//i, '')
+      .replace(/^www\./i, '')
+      .replace(/^instagram\.com\//i, '')
+      .replace(/\/.*$/, '')
+      .replace(/\?.*$/, '')
+      .replace(/^@+/, '')
+      .trim();
+    if (!/^[A-Za-z0-9._]{1,30}$/.test(handle)) {
+      return { ok: false, error: 'Enter a valid Instagram handle' };
+    }
+    return { ok: true, value: `https://instagram.com/${handle}` };
+  },
 };
 
 // Honeypot: bots fill every field. If `_hp` has content, silently reject.

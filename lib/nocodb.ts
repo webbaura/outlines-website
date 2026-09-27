@@ -1,7 +1,7 @@
 // NocoDB REST client.
 // All env vars are read at call-time so missing config fails per-request, not at boot.
 
-export type NocoTable = 'guests' | 'hosts' | 'djs' | 'events' | 'newsletter' | 'label';
+export type NocoTable = 'guests' | 'hosts' | 'djs' | 'events' | 'newsletter' | 'label' | 'cafeDisco';
 
 // One place that maps our internal table name → NocoDB table title + env var
 // holding the table ID. Consumed by the runtime client below plus the setup
@@ -13,6 +13,7 @@ export const TABLE_META: Record<NocoTable, { envKey: string; title: string }> = 
   events:     { envKey: 'NOCODB_TABLE_EVENTS',            title: 'events' },
   newsletter: { envKey: 'NOCODB_TABLE_NEWSLETTER',        title: 'newsletter' },
   label:      { envKey: 'NOCODB_TABLE_LABEL',             title: 'label_submissions' },
+  cafeDisco:  { envKey: 'NOCODB_TABLE_CAFE_DISCO',        title: 'cafe_disco_rsvps' },
 };
 
 function readEnv(): { baseUrl: string; token: string } {
@@ -79,7 +80,14 @@ export async function insertRecord<T extends Record<string, unknown>>(
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
     const { baseUrl, token } = readEnv();
-    const url = `${baseUrl}/api/v2/tables/${tableId(table)}/records`;
+    const tId = tableId(table);
+    const url = `${baseUrl}/api/v2/tables/${tId}/records`;
+
+    // Fingerprint the token (first 8 chars) so we can tell if a stale one is loaded
+    // without leaking the secret.
+    console.log(
+      `[nocodb] insert table=${table} tableId=${tId} tokenPrefix=${token.slice(0, 8)} columns=${Object.keys(record).join(',')}`,
+    );
 
     const res = await fetch(url, {
       method: 'POST',
@@ -94,7 +102,7 @@ export async function insertRecord<T extends Record<string, unknown>>(
 
     if (!res.ok) {
       const body = await res.text().catch(() => '');
-      return { ok: false, error: `NocoDB ${res.status}: ${body.slice(0, 200)}` };
+      return { ok: false, error: `NocoDB ${res.status}: ${body.slice(0, 400)}` };
     }
     return { ok: true };
   } catch (err) {

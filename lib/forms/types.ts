@@ -15,7 +15,8 @@ export type FieldKind =
   | 'url'          // required URL
   | 'optionalUrl'  // may be empty
   | 'date'         // ISO yyyy-mm-dd
-  | 'urlList';     // array of URLs, rendered as repeatable rows with a + control
+  | 'urlList'      // array of URLs, rendered as repeatable rows with a + control
+  | 'instagram';   // handle input, stored as https://instagram.com/<handle>
 
 export interface Field {
   readonly key: string;         // form state key, e.g. 'fullName'
@@ -78,7 +79,12 @@ export function defineForm<const T extends readonly Field[]>(
 // the server enforces.
 export function isRequired(field: Field): boolean {
   if (field.kind === 'optionalUrl') return false;
-  if (field.kind === 'text' || field.kind === 'longtext' || field.kind === 'urlList') {
+  if (
+    field.kind === 'text' ||
+    field.kind === 'longtext' ||
+    field.kind === 'urlList' ||
+    field.kind === 'instagram'
+  ) {
     return field.required ?? true;
   }
   return true;

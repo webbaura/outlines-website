@@ -35,6 +35,8 @@ export function validateField(field: Field, value: unknown): FieldResult<string>
       return validators.optionalUrl(value);
     case 'date':
       return validators.isoDate(value);
+    case 'instagram':
+      return validators.instagram(value, field.required ?? true);
     case 'urlList': {
       const required = field.required ?? true;
       const max = field.maxItems ?? 20;
