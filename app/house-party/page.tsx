@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 // `src` (direct .mp4) or `embedUrl` (Vimeo/YouTube/Drive iframe).
 type Reel = { caption?: string; src?: string; embedUrl?: string };
 const videos: Reel[] = [
-  { src: 'https://ikdplxlvutyegtbi.public.blob.vercel-storage.com/outlines-house-party-reel' },
+  { src: 'https://ikdplxlvutyegtbi.public.blob.vercel-storage.com/House%20party%20reel%20%281%29.mp4' },
 ];
 
 const pillars = [
