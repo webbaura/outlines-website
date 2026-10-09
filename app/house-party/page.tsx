@@ -18,11 +18,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Drop your portrait video URLs here when ready. Each item supports either
+// Drop your video URLs here when ready. Each item supports either
 // `src` (direct .mp4) or `embedUrl` (Vimeo/YouTube/Drive iframe).
-type Reel = { caption?: string; src?: string; embedUrl?: string };
+// `landscape: true` on a single reel renders it full-bleed instead of portrait.
+type Reel = { caption?: string; src?: string; embedUrl?: string; landscape?: boolean };
 const videos: Reel[] = [
-  { src: 'https://ikdplxlvutyegtbi.public.blob.vercel-storage.com/House%20party%20reel%20%281%29.mp4' },
+  { landscape: true, src: 'https://ikdplxlvutyegtbi.public.blob.vercel-storage.com/House%20party%20reel%20%281%29.mp4' },
 ];
 
 const pillars = [
@@ -72,41 +73,64 @@ export default function HousePartiesPage() {
         </ScrollReveal>
       </section>
 
-      {/* ── Video reel (portrait — featured 1-up or compact grid 2+) ──── */}
+      {/* ── Video reel (landscape full-bleed, or portrait featured 1-up / grid 2+) ── */}
       {videos.length > 0 && (
-        <section className="relative py-20 sm:py-28 px-6 border-t border-white/5 overflow-hidden">
+        <section className="relative py-20 sm:py-28 border-t border-white/5 overflow-hidden">
           {/* Architectural verticals — same language as the hero */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-8 sm:left-14 w-px bg-white/[0.06]" />
           <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-8 sm:right-14 w-px bg-white/[0.06]" />
 
-          <ScrollReveal className="relative max-w-6xl mx-auto">
-            <p className="text-[10px] sm:text-xs font-[family-name:var(--font-montserrat)] text-white/45 uppercase tracking-[0.4em] mb-10 sm:mb-14 flex items-center justify-center gap-3">
+          <ScrollReveal className="relative">
+            <p className="px-6 text-[10px] sm:text-xs font-[family-name:var(--font-montserrat)] text-white/45 uppercase tracking-[0.4em] mb-10 sm:mb-14 flex items-center justify-center gap-3">
               <span aria-hidden="true" className="block h-px w-6 bg-white/25" />
               Inside the room
               <span aria-hidden="true" className="block h-px w-6 bg-white/25" />
             </p>
 
-            {videos.length === 1 ? (
+            {videos.length === 1 && videos[0].landscape ? (
+              /* Featured landscape — edge to edge. The source is a 1080×1920 file
+                 with the footage letterboxed in a ~1080×768 band, so we frame at
+                 that ratio and `cover` crops the black bars away. Height is capped
+                 on large screens so it never overruns the viewport. */
+              videos[0].src ? (
+                <PortraitVideo
+                  src={videos[0].src}
+                  caption={videos[0].caption}
+                  frameClassName="aspect-[1080/768] max-h-[85svh]"
+                  fit="cover"
+                />
+              ) : videos[0].embedUrl ? (
+                <PortraitVideo
+                  embedUrl={videos[0].embedUrl}
+                  caption={videos[0].caption}
+                  frameClassName="aspect-video max-h-[85svh]"
+                />
+              ) : null
+            ) : videos.length === 1 ? (
               /* Featured single — centred portrait, max 380px so it reads
                  cinematic rather than stretched */
-              <div className="mx-auto w-full max-w-[380px]">
-                {videos[0].src ? (
-                  <PortraitVideo src={videos[0].src} caption={videos[0].caption} />
-                ) : videos[0].embedUrl ? (
-                  <PortraitVideo embedUrl={videos[0].embedUrl} caption={videos[0].caption} />
-                ) : null}
+              <div className="px-6">
+                <div className="mx-auto w-full max-w-[380px]">
+                  {videos[0].src ? (
+                    <PortraitVideo src={videos[0].src} caption={videos[0].caption} />
+                  ) : videos[0].embedUrl ? (
+                    <PortraitVideo embedUrl={videos[0].embedUrl} caption={videos[0].caption} />
+                  ) : null}
+                </div>
               </div>
             ) : (
               /* Compact grid — 2-up on tablet, 3-up on desktop. Tighter max-width
                  than the single case so portrait cells stay proportional. */
-              <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1100px]">
-                {videos.map((v, i) =>
-                  v.src ? (
-                    <PortraitVideo key={i} src={v.src} caption={v.caption} />
-                  ) : v.embedUrl ? (
-                    <PortraitVideo key={i} embedUrl={v.embedUrl} caption={v.caption} />
-                  ) : null,
-                )}
+              <div className="px-6">
+                <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1100px]">
+                  {videos.map((v, i) =>
+                    v.src ? (
+                      <PortraitVideo key={i} src={v.src} caption={v.caption} />
+                    ) : v.embedUrl ? (
+                      <PortraitVideo key={i} embedUrl={v.embedUrl} caption={v.caption} />
+                    ) : null,
+                  )}
+                </div>
               </div>
             )}
           </ScrollReveal>
