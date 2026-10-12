@@ -83,10 +83,8 @@ export async function insertRecord<T extends Record<string, unknown>>(
     const tId = tableId(table);
     const url = `${baseUrl}/api/v2/tables/${tId}/records`;
 
-    // Fingerprint the token (first 8 chars) so we can tell if a stale one is loaded
-    // without leaking the secret.
     console.log(
-      `[nocodb] insert table=${table} tableId=${tId} tokenPrefix=${token.slice(0, 8)} columns=${Object.keys(record).join(',')}`,
+      `[nocodb] insert table=${table} tableId=${tId} columns=${Object.keys(record).join(',')}`,
     );
 
     const res = await fetch(url, {
