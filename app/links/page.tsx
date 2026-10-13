@@ -20,10 +20,10 @@ export const viewport: Viewport = {
 
 // Swap the featured event here when the next one is announced.
 const featured = {
-  eyebrow: 'Next up',
-  title: "Cafe Disco at Baba's Deli",
-  cta: 'Get tickets',
-  href: 'https://yourkind.io/e/cafe-disco-at-babas-deli-3c95c1',
+  eyebrow: 'Next up · Sun 18 Oct',
+  title: 'Cafe Disco at Deli Boy',
+  cta: 'Free tickets',
+  href: 'https://yourkind.io/e/cafe-disco-deli-boy-b2f50a',
 };
 
 const ICON = 20;
