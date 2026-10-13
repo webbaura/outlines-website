@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
-import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
-import SocialRail from '@/components/SocialRail';
-import LiquidEtherBackground from '@/components/LiquidEtherBackground';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -52,11 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={montserrat.variable} data-scroll-behavior="smooth">
       <body className="font-[family-name:var(--font-montserrat)]">
-        <LiquidEtherBackground />
-        <Nav />
-        <SocialRail />
-        <main>{children}</main>
-        <Footer />
+        {children}
+        <Analytics />
       </body>
     </html>
   );

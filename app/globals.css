@@ -120,7 +120,13 @@ body {
 .hero-line-2 { animation-delay: 0.12s; }
 .hero-line-3 { animation-delay: 0.24s; }
 
+/* /links — staggered entrance; per-item delay set inline. */
+.links-rise {
+  animation: reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .links-rise { animation: none; }
   .marquee { animation: none; }
   .hero-line { animation: none; }
   .hero-scroll-draw { animation: none; opacity: 0.45; transform: none; }

@@ -10,6 +10,7 @@
     "verify:nocodb": "tsx --env-file=.env.local scripts/verify-nocodb.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^0.576.0",
     "next": "^16.2.6",
     "react": "19.2.3",

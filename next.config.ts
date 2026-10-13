@@ -62,7 +62,7 @@ const nextConfig: NextConfig = {
       // Public assets — 30 days with SWR
       // (Next.js already sets immutable cache headers on /_next/static automatically)
       {
-        source: '/(.*)\\.(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2)',
+        source: '/(.*)\\.(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2|mp4)',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' }],
       },
     ];
